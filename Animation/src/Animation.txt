@@ -1,0 +1,80 @@
+Theory Behind the Code: Animation Using Threads in Java AWT:
+
+1. Introduction to Animation in Java AWT
+In graphical applications, animation is achieved by continuously updating an object’s position and repainting the
+screen at short time intervals.
+
+Java AWT (Abstract Window Toolkit) provides a Graphics class for drawing shapes and a repaint() method to refresh
+the screen.
+
+Threads (Runnable interface) allow running a background process that updates the position of an object independently.
+
+2. Explanation of the Code
+
+Extends Frame (AWT GUI Window)
+
+The Myframe class inherits from Frame, creating a window where the animation runs.
+
+Implements Runnable
+
+This allows the frame to execute in a separate thread for smooth animation.
+
+Variables Used
+
+int x, y, tx, ty;
+x, y: Position of the moving object (a red ball).
+
+tx, ty: Speed and direction of movement (positive or negative).
+
+3. Working of the Animation
+Thread Initialization
+
+A new thread is created and started inside the Myframe constructor:
+
+Thread t = new Thread(this);
+t.start();
+This calls the run() method, which handles movement logic.
+
+Drawing the Ball (paint(Graphics g))
+
+paint(Graphics g) is called automatically whenever repaint() is triggered.
+
+g.fillOval(x, y, 50, 50); draws a red ball at the updated x, y position.
+
+Ball Movement Logic (run() method)
+
+The while(true) loop continuously updates the ball's position:
+
+x += tx;
+y += ty;
+Collision detection:
+
+if (x < 0 || x > 450)
+    tx = tx * -1;
+if (y < 20 || y > 350)
+    ty = ty * -1;
+If the ball reaches the window boundary, it reverses direction.
+
+Refreshing the Window (repaint())
+
+repaint() calls paint(Graphics g), updating the position of the ball.
+
+Thread Sleep for Smooth Animation
+
+try { Thread.sleep(5); } catch (Exception e) {}
+Causes the thread to pause for 5 milliseconds, controlling the speed of animation.
+
+4. Role of Runnable and Multithreading
+Instead of blocking the main thread, a separate thread is used to handle animation, ensuring a smooth user experience.
+
+This allows the UI to remain responsive while the animation runs in the background.
+
+5. Advantages of Using Threads for Animation
+✅ Smooth Motion: Updates position continuously in a separate thread.
+✅ Efficient: Does not block the main GUI thread.
+✅ Customizable: Speed and direction can be easily modified.
+
+Conclusion
+This program demonstrates basic 2D animation in Java AWT using the Runnable interface.
+It creates a bouncing ball effect by continuously updating the ball’s position and reversing direction upon
+collision with window boundaries.
