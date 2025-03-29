@@ -1,0 +1,52 @@
+1. Introduction to Adapter Classes
+In Java, event handling is done using Listener Interfaces (e.g., WindowListener, MouseListener, KeyListener).
+
+However, implementing an entire listener interface requires overriding all its methods, even if we need only one.
+
+Adapter Classes help solve this problem by providing empty implementations of these methods, allowing developers to
+override only the required ones.
+
+2. WindowAdapter Class
+WindowAdapter is an abstract class that implements the WindowListener interface.
+
+Since WindowListener has seven methods, using WindowAdapter allows overriding only the necessary ones, avoiding
+unnecessary method definitions.
+
+3. Event Handling Mechanism in Java AWT
+Java uses an event-driven programming model where:
+
+A user performs an action (e.g., clicking the close button).
+
+The system generates an event (WindowEvent in this case).
+
+The event is sent to the registered listener (WindowAdapter).
+
+The appropriate method (windowClosing) is invoked to handle the event.
+
+4. Explanation of the Code
+MyWindowAdapter extends WindowAdapter
+
+This custom adapter class overrides windowClosing(WindowEvent we) to define behavior when the window is closed.
+
+Calls System.exit(0); to terminate the application.
+
+MyFrame extends Frame
+
+A custom class that extends Frame (a top-level AWT container).
+
+The addWindowListener(new MyWindowAdapter()); statement registers an instance of MyWindowAdapter to handle window events.
+
+AdapterClassDemo (Main Method)
+
+Creates an instance of MyFrame, sets its size, and makes it visible.
+
+5. Advantages of Using an Adapter Class
+Code Simplification: Avoids overriding unused methods from WindowListener.
+
+Better Readability: The program focuses only on the required event-handling logic.
+
+Reusability: The custom adapter class can be reused in multiple frames.
+
+
+Using WindowAdapter simplifies event handling by allowing us to override only the required methods,
+making Java AWT programming cleaner and more efficient.
