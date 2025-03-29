@@ -1,0 +1,132 @@
+Below are two complete code examples demonstrating:
+
+1. GridBagLayout in AWT: A flexible, grid-based layout where you can control each component’s position and spanning.
+2. BoxLayout in Swing: A simple, one-dimensional (vertical or horizontal) layout that respects each component’s preferred size.
+
+Although BoxLayout is not available in pure AWT (you’GravityFallAnimation use alternatives like FlowLayout or a single‑row/column GridLayout),
+Swing’s BoxLayout is often used for linear arrangements.
+
+---
+
+### 1. GridBagLayout Example (AWT)
+
+package gridbagdemo;
+
+import java.awt.*;
+
+public class GridBagDemoAWT extends Frame {
+    public GridBagDemoAWT() {
+        super("GridBagLayout Demo (AWT)");
+        
+        // Set the layout manager to GridBagLayout.
+        setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        // Create sample buttons.
+        Button b1 = new Button("Button 1");
+        Button b2 = new Button("Button 2");
+        Button b3 = new Button("Button 3");
+        Button b4 = new Button("Button 4");
+
+        // Place b1 at (0,0) with horizontal fill.
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        add(b1, gbc);
+
+        // Place b2 at (1,0).
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        add(b2, gbc);
+
+        // Place b3 at (0,1) spanning 2 columns.
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 2;
+        add(b3, gbc);
+
+        // Place b4 at (0,2).
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = 1;
+        add(b4, gbc);
+
+        setSize(400, 300);
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new GridBagDemoAWT();
+    }
+}
+```
+Explanation:
+- The frame uses GridBagLayout for complex, grid-based positioning.
+- GridBagConstraints specify the grid position (gridx, gridy), how many cells a component spans (gridwidth), and
+  how components fill their cells.
+- This layout is ideal when you need fine-grained control over component positioning.
+
+---
+
+### 2. BoxLayout Example (Swing)
+
+package boxlayoutdemo;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class BoxLayoutDemoSwing extends JFrame {
+    public BoxLayoutDemoSwing() {
+        super("BoxLayout Demo (Swing)");
+        
+        // Create a panel and set its layout to BoxLayout in the Y_AXIS (vertical) direction.
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        // Create sample buttons.
+        JButton b1 = new JButton("Button 1");
+        JButton b2 = new JButton("Button 2");
+        JButton b3 = new JButton("Button 3");
+
+        // Add buttons to the panel with rigid areas for spacing.
+        panel.add(b1);
+        panel.add(Box.createRigidArea(new Dimension(0, 10))); // vertical spacing
+        panel.add(b2);
+        panel.add(Box.createRigidArea(new Dimension(0, 10)));
+        panel.add(b3);
+
+        add(panel);
+        setSize(300, 200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new BoxLayoutDemoSwing());
+    }
+}
+
+Explanation:
+- The frame uses BoxLayout (available in Swing) to arrange components linearly along the vertical axis.
+- Each component respects its preferred size, and additional spacing is added with rigid areas.  
+- BoxLayout is straightforward for creating vertical or horizontal stacks of components.
+
+---
+
+### Differences Between GridBagLayout and BoxLayout
+
+- Flexibility:
+  - GridBagLayout (AWT): Offers precise control with a grid of cells, where components can span multiple rows or columns.
+  - BoxLayout (Swing): Provides a simple linear arrangement (either vertically or horizontally) without grid constraints.
+
+- Component Sizing:
+  - GridBagLayout: Uses constraints (such as weight and fill) to determine how extra space is distributed.
+  - BoxLayout: Respects each component’s preferred, minimum, and maximum sizes, making it ideal for uniform linear layouts.
+
+- Complexity:
+  - GridBagLayout: Requires more detailed configuration (using GridBagConstraints) to achieve the desired layout.
+  - BoxLayout: Easier to set up for simple linear arrangements.
+
+These examples and explanations should help you understand and choose between a flexible grid-based layout using
+GridBagLayout in AWT and a simple linear layout using BoxLayout in Swing.
