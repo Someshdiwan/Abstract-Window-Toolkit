@@ -1,0 +1,65 @@
+2. What is an Event?
+An event is an object that represents a significant change or an action in a program.
+
+In the context of GUIs, events are generated when a user interacts with a component. For example:
+
+Mouse Events: Clicking, entering, exiting, or moving the mouse over a component.
+
+Keyboard Events: Pressing or releasing a key.
+
+Action Events: Triggered when a button is clicked, a menu item is selected, etc.
+
+Window Events: Actions related to the window, such as opening, closing, or resizing.
+
+Key Points About Events:
+Encapsulation: An event encapsulates all the relevant information about the action
+(e.g., which button was pressed, the coordinates of a mouse click, etc.).
+
+Immutable: Once an event object is created, its information is typically not changed.
+
+
+3. The Event Delegation Mechanism:
+
+The event delegation model works through the collaboration of three main components:
+
+a. Event Source
+Definition: The component that generates the event.
+Example: A button that a user clicks on.
+
+b. Event Object
+Definition: An object that holds details about the event. For instance,
+a MouseEvent object contains details such as the mouse’s position, the type of click, etc.
+Example: When a button is clicked, a corresponding ActionEvent object is created.
+
+c. Event Listener
+Definition: An interface that defines methods to handle specific events.
+You implement these methods in your code to define what should happen when the event occurs.
+Example: Implementing the ActionListener interface and overriding the actionPerformed() method to
+specify what should happen when a button is clicked.
+
+How They Work Together:
+
+Registration:
+The event listener is registered with the event source.
+This means that you attach your listener to a component by calling a method like addActionListener() on a button.
+
+Event Generation:
+When an event occurs (e.g., a button is clicked), the event source creates an event object and passes it to all
+registered listeners.
+
+Event Handling:
+The event dispatcher calls the appropriate method on the event listener
+(e.g., actionPerformed() for an action event), providing the event object as a parameter.
+The listener’s method contains the code that handles the event.
+
+4. Benefits of the Event Delegation Model
+Separation of Concerns:
+The component that generates the event doesn’t need to know what should happen when the event occurs.
+It simply notifies the registered listeners.
+
+Modularity:
+You can easily change the behavior of your application by simply swapping out listeners or modifying the
+event-handling code without changing the component code.
+
+Efficiency:
+Events are only processed by the components that are interested in them, reducing unnecessary processing.

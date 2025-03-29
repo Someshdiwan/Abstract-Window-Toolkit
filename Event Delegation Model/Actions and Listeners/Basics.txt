@@ -1,0 +1,52 @@
+Component:
+A component is any graphical element that can appear on the screen.
+Examples include buttons, check boxes, text fields, and more.
+
+All these components have three elements:
+1. Their Properties:
+2. They Have their Methods:
+3. Event.
+
+Event and Listeners:
+Components generates events.
+If event occurs we have Listeners(Receivers of an event).
+
+Listeners will have a call back method to respond Event.
+
+Example:
+Imagine you’re shopping for clothes. You find a piece you like and decide to buy it.
+However, the shop owner informs you that the item is currently out of stock. He asks for your phone number,
+promising that he will notify you once the item is available again. Later, when the item is restocked, the shop
+owner calls you back so you can purchase it.
+
+
+/**
+ * Event and Listeners. Classes and Listeners.
+ *
+ * @see <a href="https://docs.oracle.com/javase/8/docs/api/java/awt/event/package-summary.html">AWT Event Package</a>
+ */
+
+In this analogy:
+The event is the item being out of stock.
+
+The listener (the shop owner) receives your contact information as a callback mechanism, ready to
+notify you when the event (restocking) occurs.
+
+This mirrors how event listeners work in programming, where a component (like a button or checkbox)
+generates an event and a listener method (a callback) handles the response.
+
+Each component is responsible for drawing itself and for generating events
+when user interaction occurs (like clicks or key presses).
+
+
+Container:
+A container is a special kind of component that can hold other components.
+Examples include panels, frames, and applets. Containers manage the layout of their child components and
+can themselves generate events.
+
+
+Event Delegation Model:
+The Event Delegation Model is a design pattern used in Java (and many GUI frameworks) to handle events in a clear
+and efficient way.
+
+It separates the responsibilities of generating events from the responsibilities of handling them.
